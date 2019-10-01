@@ -67,5 +67,8 @@ mock/yarn.lock
 mock/codechecks.js
 mock/codechecksReport.json
 mock/cc.md
+mock/node_modules
+mock/package-lock.json
+mock/build
 
-
+.idea
