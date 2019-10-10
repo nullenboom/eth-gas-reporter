@@ -8,6 +8,7 @@ const Config = require("./lib/config");
 const TransactionWatcher = require("./lib/transactionWatcher");
 const GasTable = require("./lib/gasTable");
 const SyncRequest = require("./lib/syncRequest");
+const GasUsageScenario = require("./lib/gasUsageScenario.js")
 
 /**
  * Based on the Mocha 'Spec' reporter. Watches an Ethereum test suite run
@@ -26,7 +27,7 @@ function Gas(runner, options) {
   const self = this;
 
   let indents = 0;
-  let n = 0;
+  
   let failed = false;
   let indent = () => Array(indents).join("  ");
 
@@ -35,12 +36,13 @@ function Gas(runner, options) {
   const sync = new SyncRequest(config.url);
   const watch = new TransactionWatcher(config);
   const table = new GasTable(config);
+  
 
   // These call the cloud, start running them.
   utils.setGasAndPriceRates(config);
 
   // ------------------------------------  Runners -------------------------------------------------
-
+  const gasUsageScenario = new GasUsageScenario(runner);
   runner.on("start", () => {
     watch.data.initialize(config);
   });
