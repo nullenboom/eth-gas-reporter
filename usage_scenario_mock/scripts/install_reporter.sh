@@ -6,7 +6,7 @@
 install_reporter() {
 
   cp ./../package.json ./package.json
-  npx yarn
+  npm install
 
   # Copy over eth-gas-reporter
   if [ ! -e node_modules/eth-gas-reporter ]; then
