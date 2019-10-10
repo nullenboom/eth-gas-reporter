@@ -4,7 +4,7 @@
 trap cleanup EXIT
 
 # Load helpers
-cd mock
+cd ..
 source ./scripts/integration_tests.sh
 source ./scripts/install_reporter.sh
 source ./scripts/launch_testrpc.sh
@@ -18,11 +18,18 @@ else
   start_testrpc
 fi
 
+echo "now sleep 5"
 # Buidler is super fast on launch
 sleep 5
 
+echo "awake"
+
 # -----------------------  Install Reporter and run tests ------------------------------------------
+echo "installing"
 install_reporter
+echo "installed"
 test_truffle_v5_basic
-test_truffle_v5_with_options
-test_buildler_v5_plugin
+# test_truffle_v5_with_options
+# test_buildler_v5_plugin
+
+read -r -p "Press any key to exit" -n 1 -s
