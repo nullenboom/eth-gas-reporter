@@ -9,7 +9,7 @@ test_truffle_v5_basic() {
   echo "> YOU MUST LOOK AT THIS TEST TO DETECT FAILURE"
   echo "-----------------------------------------------------------"
 
-  npx truffle test --network development "$@"
+  truffle test
 
 }
 
