@@ -71,4 +71,15 @@ mock/node_modules
 mock/package-lock.json
 mock/build
 
+usage_scenario_mock/cache/
+usage_scenario_mock/artifacts/
+usage_scenario_mock/yarn.lock
+usage_scenario_mock/codechecks.js
+usage_scenario_mock/codechecksReport.json
+usage_scenario_mock/cc.md
+usage_scenario_mock/node_modules
+usage_scenario_mock/package-lock.json
+usage_scenario_mock/build
+
 .idea
+/bin/
