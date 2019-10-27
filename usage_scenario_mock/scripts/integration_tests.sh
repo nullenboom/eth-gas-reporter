@@ -8,7 +8,7 @@ test_truffle_v5_basic() {
   echo "> Visual inspection integration test (Truffle - no options)"
   echo "> YOU MUST LOOK AT THIS TEST TO DETECT FAILURE"
   echo "-----------------------------------------------------------"
-
+  truffle migrate
   truffle test
 
 }

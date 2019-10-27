@@ -11,9 +11,9 @@ contract AvgOnDemandTwo {
 	   avg = sum / count;
    }
    
-   function getAvg() public view returns (int256) {
-        return avg;
-    }
+  function calc() public returns (int256) {
+       return avg;
+   }
 }
 
 
