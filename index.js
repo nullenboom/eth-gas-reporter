@@ -45,7 +45,6 @@ function Gas(runner, options) {
     const usageScenarioAnalyzer = new UsageScenarioAnalyzer(
       runner,
       config,
-      table,
       sync
     );
   }
