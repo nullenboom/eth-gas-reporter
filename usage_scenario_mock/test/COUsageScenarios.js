@@ -1,8 +1,6 @@
 const AvgOnDemand = artifacts.require("./AvgOnDemand.sol");
 const AvgOnDemandTwo = artifacts.require("./AvgOnDemandTwo.sol");
 
-const calls = Math.floor(Math.random() * 10);
-
 contract("avgOnDemand", async accounts => {
   it("UsageScenarioOne", async () => {
     const avgOnDemand = await AvgOnDemand.new();
@@ -10,7 +8,6 @@ contract("avgOnDemand", async accounts => {
     const addTransaction2 = await avgOnDemand.add(10);
     const avgTransaction = await avgOnDemand.calc();
     const avgTransaction2 = await avgOnDemand.calc();
-    console.log("CALLS:" + calls);
   });
 });
 
@@ -19,7 +16,6 @@ contract("avgOnDemand", async accounts => {
     const avgOnDemand = await AvgOnDemand.new();
     const addTransaction = await avgOnDemand.add(10);
     const avgTransaction = await avgOnDemand.calc();
-    console.log("CALLS:" + calls);
   });
 });
 
