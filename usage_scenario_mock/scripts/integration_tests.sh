@@ -9,7 +9,16 @@ test_truffle_v5_basic() {
   echo "> YOU MUST LOOK AT THIS TEST TO DETECT FAILURE"
   echo "-----------------------------------------------------------"
   truffle migrate
-  truffle test
+  truffle test ./test/COUsageScenarios.js
+}
+
+test_truffle_parity() {
+  echo "-----------------------------------------------------------"
+  echo "> Visual inspection integration test (Truffle - no options)"
+  echo "> YOU MUST LOOK AT THIS TEST TO DETECT FAILURE"
+  echo "-----------------------------------------------------------"
+  truffle migrate
+  truffle test ./test/ParityScenario.js
 
 }
 

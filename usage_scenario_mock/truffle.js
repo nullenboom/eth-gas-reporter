@@ -9,7 +9,8 @@ module.exports = {
   mocha: {
     reporter: "eth-gas-reporter",
     reporterOptions: {
-      gasUsageScenario: true
+      gasUsageScenario: true,
+      excludeContracts: ["Migrations"]
     }
   }
 };
