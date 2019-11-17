@@ -1,0 +1,18 @@
+{
+  "Creation": "2019-11-15 15:22:47",
+  "AnalyzedScenarios": 2,
+  "AnalyzedImplementVariants": 4,
+  "Scenarios": [
+    {
+      "ScenarioName": "Parity Numbers Scenario",
+      "Variants": [
+        {
+          "VariantName": "Contract: Parity_Binary",
+          "TotalGasUsed": "152052",
+          "Methods": [],
+          "Deployments": []
+        }
+      ]
+    }
+  ]
+}
