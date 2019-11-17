@@ -5,12 +5,30 @@
   "Scenarios": [
     {
       "ScenarioName": "Parity Numbers Scenario",
+      "analyzedImplementVariants": 2,
       "Variants": [
         {
-          "VariantName": "Contract: Parity_Binary",
-          "TotalGasUsed": "152052",
-          "Methods": [],
-          "Deployments": []
+          "variantName": "Contract: Parity_Binary",
+          "totalGasUsed": 152052,
+          "Methods": [
+            {
+              "contractName": "Parity_Binary",
+              "methodName": "checkParity",
+              "numberOfCalls": 1,
+              "averageGasUsed": 42187,
+              "totalGasUsed": 42187,
+              "percentageOfScenario": 0.2775,
+              "minGasUsed": 42187,
+              "maxGasUsed": 42187
+            }
+          ],
+          "Deployments": [
+            {
+              "contractName": "Parity_Binary",
+              "gasCost": 109865,
+              "percentageOfScenario": 0.7225
+            }
+          ]
         }
       ]
     }
