@@ -80,6 +80,6 @@ usage_scenario_mock/cc.md
 usage_scenario_mock/node_modules
 usage_scenario_mock/package-lock.json
 usage_scenario_mock/build
-
+usage_scenario_mock/scenario-gas-reporter-results
 .idea
 /bin/
