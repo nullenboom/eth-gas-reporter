@@ -8,8 +8,8 @@ const Config = require("./lib/config");
 const SyncRequest = require("./lib/syncRequest");
 
 const scenarioGasTable = require("scenario-eth-gas-table");
-const UsageScenarioWatcher = require("./lib/usageScenarioWatcher");
-const UsageScenarioExporter = require("./lib/usageScenarioExporter");
+const ScenarioWatcher = require("./lib/scenarioWatcher");
+const ScenarioDataExporter = require("./lib/scenarioDataExporter");
 /**
  * Based on the Mocha 'Spec' reporter. Watches an Ethereum test suite run
  * and collects data about method & deployments gas usage. Mocha executes the hooks
@@ -34,9 +34,9 @@ function Gas(runner, options) {
   // Gas reporter setup
   const config = new Config(options.reporterOptions);
   const sync = new SyncRequest(config.url);
-  const watch = new UsageScenarioWatcher(config);
+  const watch = new ScenarioWatcher(config);
 
-  const usageScenarioExporter = new UsageScenarioExporter(config);
+  const scenarioDataExporter = new ScenarioDataExporter(config);
 
   // These call the cloud, start running them.
   utils.setGasAndPriceRates(config);
@@ -127,9 +127,9 @@ function Gas(runner, options) {
   });
 
   runner.on("end", () => {
-    let jsonAndFileName = usageScenarioExporter.export(watch.data);
+    let jsonAndFileName = scenarioDataExporter.export(watch.data);
     //schreiben in directory
-    usageScenarioExporter.writeJsonIntoReportDirWithFilename(
+    scenarioDataExporter.writeJsonIntoReportDirWithFilename(
       jsonAndFileName.json,
       jsonAndFileName.fileName
     );
