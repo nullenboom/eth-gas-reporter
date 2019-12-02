@@ -1,5 +1,7 @@
 # eth-gas-reporter
 
+# !WARNING!: THIS REPO IS NO LONGER MANAGED, WILL BE DELETED IN THE NEAR FUTURE
+
 [![npm version](https://badge.fury.io/js/eth-gas-reporter.svg)](https://badge.fury.io/js/eth-gas-reporter)
 [![Build Status](https://travis-ci.org/cgewecke/eth-gas-reporter.svg?branch=master)](https://travis-ci.org/cgewecke/eth-gas-reporter)
 [![Codechecks](https://raw.githubusercontent.com/codechecks/docs/master/images/badges/badge-default.svg?sanitize=true)](https://codechecks.io)
