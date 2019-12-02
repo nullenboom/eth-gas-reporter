@@ -5,11 +5,11 @@ const color = Base.color;
 const log = console.log;
 const utils = require("./lib/utils");
 const Config = require("./lib/config");
-const TransactionWatcher = require("./lib/transactionWatcher");
-const GasTable = require("./lib/gasTable");
 const SyncRequest = require("./lib/syncRequest");
-const UsageScenarioAnalyzer = require("./lib/usageScenarioAnalyzer.js");
 
+const scenarioGasTable = require("scenario-eth-gas-table");
+const UsageScenarioWatcher = require("./lib/usageScenarioWatcher");
+const UsageScenarioExporter = require("./lib/usageScenarioExporter");
 /**
  * Based on the Mocha 'Spec' reporter. Watches an Ethereum test suite run
  * and collects data about method & deployments gas usage. Mocha executes the hooks
@@ -34,20 +34,12 @@ function Gas(runner, options) {
   // Gas reporter setup
   const config = new Config(options.reporterOptions);
   const sync = new SyncRequest(config.url);
-  const watch = new TransactionWatcher(config);
-  const table = new GasTable(config);
+  const watch = new UsageScenarioWatcher(config);
+
+  const usageScenarioExporter = new UsageScenarioExporter(config);
 
   // These call the cloud, start running them.
   utils.setGasAndPriceRates(config);
-
-  //if gasUsageScenario Analysis is set in the options, init a GasUsageScenarioAnalyzer
-  if (options.reporterOptions.gasUsageScenario == true) {
-    const usageScenarioAnalyzer = new UsageScenarioAnalyzer(
-      runner,
-      config,
-      sync
-    );
-  }
 
   // ------------------------------------  Runners -------------------------------------------------
 
@@ -72,9 +64,10 @@ function Gas(runner, options) {
     log(fmt, test.title);
   });
 
-  runner.on("test", () => {
+  runner.on("test", test => {
     watch.beforeStartBlock = sync.blockNumber();
     watch.data.resetAddressCache();
+    watch.data.initializeImplementNew(test.title, test.parent.title);
   });
 
   runner.on("hook end", hook => {
@@ -90,7 +83,7 @@ function Gas(runner, options) {
     let consumptionString;
     let timeSpentString = color(test.speed, "%dms");
 
-    const gasUsed = watch.blocks();
+    const gasUsed = watch.blocks(test.title, test.parent.title);
 
     if (gasUsed) {
       gasUsedString = color("checkmark", "%d gas");
@@ -134,7 +127,16 @@ function Gas(runner, options) {
   });
 
   runner.on("end", () => {
-    table.generate(watch.data);
+    let jsonAndFileName = usageScenarioExporter.export(watch.data);
+    //schreiben in directory
+    usageScenarioExporter.writeJsonIntoReportDirWithFilename(
+      jsonAndFileName.json,
+      jsonAndFileName.fileName
+    );
+    //ausgabe der tabelle
+    let colorsActive = !config.noColors || false;
+    scenarioGasTable.generateTableFromJson(jsonAndFileName.json, colorsActive);
+
     self.epilogue();
   });
 }
